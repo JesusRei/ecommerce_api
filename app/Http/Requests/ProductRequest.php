@@ -25,17 +25,16 @@ class ProductRequest extends FormRequest
             'name' => 'required|string|max:255',
             'slug' => 'required|string|max:255|unique:categories,slug,' . $this->route('slug') . ',slug',
             'description' => 'required|string',
-            'price' => ['required', 'decimal', 'max:99999.99'],
+            'price' => ['required', 'numeric',],
             'stock' => 'required|integer',
             'dimensions' => 'required|string',
-            'weight' => ['required', 'decimal', 'max:999.99'],
+            'weight' => ['required', 'numeric',],
             'material' => 'required|string',
             'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'category_slug' => 'required|string|exists:categories,slug',
 
         ];
 
-        // Solo aplicar la regla de imagen si se está subiendo una nueva imagen
         if ($this->hasFile('image')) {
             $rules['image'] = 'image|mimes:jpeg,png,jpg,gif,svg|max:2048';
         }

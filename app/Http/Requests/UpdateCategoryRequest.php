@@ -25,7 +25,7 @@ class UpdateCategoryRequest extends FormRequest
             'name' => 'required|string|max:255',
             'slug' => 'required|string|max:255|unique:categories,slug,' . $this->route('slug') . ',slug',
             'description' => 'required|string',
-            'priority' => 'required|integer|min:1|max:10',
+            'priority' => 'required|integer',
         ];
     }
 }
